@@ -4,6 +4,7 @@ const emailValidation = require("../helpers/emailValidation")
 const passValidation = require("../helpers/passValidation")
 const DataSchema = require("../model/dataSchema")
 const otpGenerator = require('otp-generator')
+const nodemailer = require("nodemailer");
 
 const regController = async (req,res)=>{
     
@@ -30,9 +31,24 @@ const regController = async (req,res)=>{
         if(existingUser.length > 0){
             res.send(`${email} is alredy in use`)
         }else{
-            let otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false });
-            bcrypt.hash(password, 10, function(err, hash) {
-                
+            let otp = otpGenerator.generate(6, { upperCaseAlphabets: false, specialChars: false, lowerCaseAlphabets: false });
+            bcrypt.hash(password, 10, async function(err, hash) {
+
+                const transporter = nodemailer.createTransport({
+                    service: "gmail",
+                    auth: {
+                        user: "rahiabrar177@gmail.com",
+                        pass: "fcen kmox lmrc ongq",
+                    },
+                  });
+
+                  const info = await transporter.sendMail({
+                    from: 'rahiabrar177@gmail.com', // sender address
+                    to: email, // list of receivers
+                    subject: "Hello ✔", 
+                    html: otp, // html body
+                  });
+
                 let User = new DataSchema({
                     name,email, password:hash, otp:otp
                 })
