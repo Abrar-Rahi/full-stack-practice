@@ -31,8 +31,8 @@ console.log(userInfo);
       getItem('View Product', '6'),
     ]),
     getItem('CATEGORY & SUB CATEGORY', 'sub4', <SettingOutlined />, [
-      getItem('Add Category', '9'),
-      getItem('Add SubCategory', '/dashboard/subCategory'),
+      getItem('Add Category', '/dashboard/addCategory'),
+      getItem('Add SubCategory', '/dashboard/addSubCategory'),
       getItem('View Category', '11'),
       getItem('View SubCategory', '12'),
     ]),

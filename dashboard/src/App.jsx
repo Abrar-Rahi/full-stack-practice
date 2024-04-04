@@ -10,7 +10,8 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import NewPass from "./pages/NewPass";
 import Dashboard from "./pages/Dashboard";
-import SubCategory from "./pages/SubCategory";
+import AddCategory from "./pages/AddCategory";
+import AddSubCategory from "./pages/AddSubCategory";
 
 const App = () => {
 
@@ -25,7 +26,8 @@ const App = () => {
         <Route path="/newPass/:token" element={<NewPass />}></Route>
         <Route path="/dashboard" element={<Dashboard />}>
 
-          <Route path="subCategory" element={<SubCategory />}></Route>
+          <Route path="addSubCategory" element={<AddSubCategory />}></Route>
+          <Route path="addCategory" element={<AddCategory />}></Route>
 
         </Route>
 
